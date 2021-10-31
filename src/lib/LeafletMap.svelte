@@ -1,11 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import { browser } from "$app/env";
-  import { MiniMap } from "leaflet-minimap";
 
   onMount(async () => {
     if (browser) {
       const leaflet = await import("leaflet");
+      const MiniMap = await import("leaflet-minimap");
 
       var roverIcon = L.icon({
         iconUrl: "rover.png",
