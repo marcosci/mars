@@ -19,7 +19,6 @@ var __privateSet = (obj, member, value, setter) => {
   return value;
 };
 var _map;
-import "leaflet-minimap";
 function get_single_valued_header(headers, key) {
   const value = headers[key];
   if (Array.isArray(value)) {
@@ -1435,9 +1434,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-da2816d5.js",
+      file: assets + "/_app/start-7685a849.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-da2816d5.js", assets + "/_app/chunks/vendor-b8d6582c.js", assets + "/_app/chunks/preload-helper-ec9aa979.js"]
+      js: [assets + "/_app/start-7685a849.js", assets + "/_app/chunks/vendor-af0f2ef7.js", assets + "/_app/chunks/preload-helper-ec9aa979.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1496,7 +1495,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-9942e1cd.js", "css": [], "js": ["layout.svelte-9942e1cd.js", "chunks/vendor-b8d6582c.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-ac6a58ac.js", "css": [], "js": ["error.svelte-ac6a58ac.js", "chunks/vendor-b8d6582c.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-863ff072.js", "css": ["assets/pages/index.svelte-e5579392.css"], "js": ["pages/index.svelte-863ff072.js", "chunks/vendor-b8d6582c.js", "chunks/preload-helper-ec9aa979.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-c0349d46.js", "css": [], "js": ["layout.svelte-c0349d46.js", "chunks/vendor-af0f2ef7.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-d9465223.js", "css": [], "js": ["error.svelte-d9465223.js", "chunks/vendor-af0f2ef7.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-91b88c70.js", "css": ["assets/pages/index.svelte-e5579392.css"], "js": ["pages/index.svelte-91b88c70.js", "chunks/vendor-af0f2ef7.js", "chunks/preload-helper-ec9aa979.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
