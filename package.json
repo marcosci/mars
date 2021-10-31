@@ -1,0 +1,20 @@
+{
+  "name": "my-app",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-netlify": "^1.0.0-next.35",
+    "@sveltejs/kit": "next",
+    "@types/leaflet": "^1.7.5",
+    "svelte": "^3.42.6"
+  },
+  "type": "module",
+  "dependencies": {
+    "leaflet": "^1.7.1",
+    "leaflet-minimap": "^3.6.1"
+  }
+}
