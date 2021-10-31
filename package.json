@@ -15,6 +15,7 @@
   "type": "module",
   "dependencies": {
     "leaflet": "^1.7.1",
-    "leaflet-minimap": "^3.6.1"
+    "leaflet-minimap": "^3.6.1",
+    "svelte-preprocess": "^4.9.8"
   }
 }
