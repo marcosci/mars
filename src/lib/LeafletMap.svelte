@@ -2,6 +2,8 @@
   // import packages
   import { onMount } from "svelte";
   import { browser } from "$app/env";
+  import SidebarLeft from "$lib/SidebarLeft.svelte";
+  import SidebarRight from "$lib/SidebarRight.svelte";
 
   onMount(async () => {
     if (browser) {
@@ -225,11 +227,16 @@
 
 <main>
   <div id="map" />
+  <SidebarLeft />
+  <SidebarRight />
 </main>
 
 <style>
   @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
   main #map {
-    height: 99vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
   }
 </style>
