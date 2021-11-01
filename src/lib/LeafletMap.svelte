@@ -202,7 +202,7 @@
         .map("map", {
           layers: [landingsites, baseMaps.Basemap],
         })
-        .setView([0, 0], 2.5);
+        .setView([0, 0], 2.25);
 
       L.control.layers(baseMaps, overlayMaps).addTo(map);
 
