@@ -202,12 +202,16 @@
         .map("map", {
           layers: [landingsites, baseMaps.Basemap],
         })
-        .setView([0, 0], 2);
+        .setView([0, 0], 2.5);
 
       L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-      // add MiniMap to Mars Map
+      // change map attribution
+      map.attributionControl.setPrefix(
+        "<a href='https://www.openplanetary.org/opm/basemaps'>OpenPlanetaryMap Basemaps</a>"
+      );
 
+      // add MiniMap to Mars Map
       var rect1 = { color: "#b0b0b0", weight: 3 };
       var rect2 = { color: "#616161", weight: 1, opacity: 0, fillOpacity: 0 };
       var miniMap = new L.Control.MiniMap(baseMaps_minimap.Basemap, {
@@ -227,7 +231,7 @@
 
 <main>
   <div id="map" />
-  <SidebarLeft />
+  <!-- <SidebarLeft /> -->
   <SidebarRight />
 </main>
 

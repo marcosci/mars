@@ -12,12 +12,37 @@
 
 <div id="right" class="sidebarright flex-center right collapsed">
   <div class="sidebarright-content rounded-rect flex-center">
-    Credits
+    🪐 mars
     <div
       class="sidebarright-toggle rounded-rect right"
       on:click={() => togglesidebarright("right")}
     >
       &larr;
+    </div>
+
+    <div class="sibartext">
+      <br />
+      <p>
+        Mars is the most infamous planet in our solar system when it comes to to
+        the human fantasy of space travel. We left our footprints on the surface
+        of Mars and I hope to give us a better unterstanding of this by showing
+        where what happened.
+        <br />
+        <b>Author</b>: <img src="/favicon.ico" style="width:8%;" /> kaldera //
+        Marco Sciaini
+        <br />
+        Code can be found <a href="https://github.com/marcosci/mars">here</a>
+      </p>
+      <div style="font-size: 10px;">
+        Icons made by
+        <a
+          href="https://www.flaticon.com/authors/jesus-chavarria"
+          title="Jesus Chavarria">Jesus Chavarria</a
+        >
+        from
+        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
+        >
+      </div>
     </div>
   </div>
 </div>
@@ -33,7 +58,7 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    bottom: 30px;
+    bottom: 13px;
   }
 
   .flex-center.left {
@@ -53,6 +78,15 @@
     color: gray;
   }
 
+  .sibartext {
+    position: absolute;
+    top: 20px;
+    width: 95%;
+    height: 95%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: gray;
+  }
   .sidebarright-toggle {
     position: absolute;
     width: 1.3em;
