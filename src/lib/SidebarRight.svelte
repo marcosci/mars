@@ -106,7 +106,7 @@
   }
 
   .sidebarright-toggle:hover {
-    color: #0aa1cf;
+    color: #ed5f5e;
     cursor: pointer;
   }
 

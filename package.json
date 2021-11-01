@@ -16,6 +16,7 @@
   "type": "module",
   "dependencies": {
     "leaflet": "^1.7.1",
-    "leaflet-minimap": "^3.6.1"
+    "leaflet-minimap": "^3.6.1",
+    "leaflet.control.opacity": "^1.6.0"
   }
 }
