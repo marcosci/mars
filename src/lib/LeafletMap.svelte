@@ -4,6 +4,9 @@
   import { browser } from "$app/env";
   import SidebarLeft from "$lib/SidebarLeft.svelte";
   import SidebarRight from "$lib/SidebarRight.svelte";
+  import curiosity_path from "$lib/data/curiosity_path.json";
+  import perseverance_path from "$lib/data/perseverance_path.json";
+  import helicopter_path from "$lib/data/helicopter_path.json";
 
   onMount(async () => {
     if (browser) {
@@ -37,7 +40,7 @@
         }).bindPopup(
           "<b>Spirit</b><br> <img style='width: 300px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/KSC-03PD-0786.jpg/2880px-KSC-03PD-0786.jpg'> <br> <a href='https://en.wikipedia.org/wiki/Spirit_(rover)'>Learn more about me!</a>"
         ),
-        curiosity = L.marker([-4.5895, 137.4417], {
+        curiosity = L.marker([-4.589467, 137.441633], {
           icon: roverIcon,
         }).bindPopup(
           "<b>Curiosity</b><br> <img style='width: 300px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg/1920px-Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg'> <br> <a href='https://en.wikipedia.org/wiki/Curiosity_(rover)'>Learn more about me!</a>"
@@ -84,7 +87,8 @@
           "<b>Viking 2</b><br> <img style='width: 300px' src='https://upload.wikimedia.org/wikipedia/commons/7/75/Viking_spacecraft.jpg' > <br> <a href='https://en.wikipedia.org/wiki/Viking_2'>Learn more about me!</a>"
         );
 
-      var landingsites = L.layerGroup([
+      // group them as featureGroup
+      var landingsites = L.featureGroup([
         mars2,
         mars3,
         deepspace2,
@@ -104,6 +108,7 @@
         viking2,
       ]);
 
+      // define underlying basemaps
       var baseMaps = {
         Basemap: L.tileLayer(
           "https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png",
@@ -194,10 +199,47 @@
         ),
       };
 
-      var overlayMaps = {
-        "Landing Sites": landingsites,
+      // rover paths
+      var roverStyle = {
+        color: "#ff7800",
+        weight: 5,
+        opacity: 0.65,
       };
 
+      var heliStyle = {
+        color: "#ffac62",
+        weight: 5,
+        opacity: 0.65,
+      };
+
+      var curiosity_line = L.geoJSON(curiosity_path, {
+        style: roverStyle,
+      });
+      var perseverance_line = L.geoJSON(perseverance_path, {
+        style: roverStyle,
+      });
+      var helicopter_line = L.geoJSON(helicopter_path, {
+        style: heliStyle,
+      });
+
+      helicopter_line.bindTooltip("Perseverance copter flight path");
+      curiosity_line.bindTooltip("Curiosity rover path");
+      perseverance_line.bindTooltip("Perseverance rover path");
+
+      var curiosityPaths = L.featureGroup([curiosity_line]);
+
+      var perseverancePaths = L.featureGroup([
+        perseverance_line,
+        helicopter_line,
+      ]);
+
+      var overlayMaps = {
+        "Landing Sites": landingsites,
+        Curiosity: curiosityPaths,
+        Perseverance: perseverancePaths,
+      };
+
+      // let s do the actual map
       const map = leaflet
         .map("map", {
           layers: [landingsites, baseMaps.Basemap],
@@ -224,6 +266,17 @@
 
       map.on("baselayerchange", function (e) {
         miniMap.changeLayer(baseMaps_minimap[e.name]);
+      });
+
+      // zoom to extent of selected layer
+      map.on("overlayadd", function (e) {
+        if (e.name === "Landing Sites") {
+          map.fitBounds(landingsites.getBounds());
+        } else if (e.name === "Perseverance") {
+          map.fitBounds(perseverancePaths.getBounds());
+        } else if (e.name === "Curiosity") {
+          map.fitBounds(curiosityPaths.getBounds());
+        }
       });
     }
   });
