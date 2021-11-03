@@ -7,6 +7,7 @@
   import curiosity_path from "$lib/data/curiosity_path.json";
   import perseverance_path from "$lib/data/perseverance_path.json";
   import helicopter_path from "$lib/data/helicopter_path.json";
+  import mars_montes from "$lib/data/mars_montes.json";
 
   onMount(async () => {
     if (browser) {
@@ -212,6 +213,12 @@
         opacity: 0.65,
       };
 
+      var montesStyle = {
+        color: "#f2c693",
+        weight: 5,
+        opacity: 0.75,
+      };
+
       var curiosity_line = L.geoJSON(curiosity_path, {
         style: roverStyle,
       });
@@ -220,6 +227,24 @@
       });
       var helicopter_line = L.geoJSON(helicopter_path, {
         style: heliStyle,
+      });
+
+      // show name of each element of mars_poly
+      function onEachFeatures(feature, layer) {
+        layer.bindPopup(feature.properties.clean_name);
+        // change layer color
+        layer.on({
+          click: function (e) {
+            e.target.setStyle({
+              color: "#ff7800",
+            });
+          },
+        });
+      }
+
+      var mars_poly = L.geoJSON(mars_montes, {
+        style: montesStyle,
+        onEachFeature: onEachFeatures,
       });
 
       helicopter_line.bindTooltip("Perseverance copter flight path");
@@ -233,16 +258,19 @@
         helicopter_line,
       ]);
 
+      var marsMontes = L.featureGroup([mars_poly]);
+
       var overlayMaps = {
         "Landing Sites": landingsites,
         Curiosity: curiosityPaths,
         Perseverance: perseverancePaths,
+        "Mars Montes": marsMontes,
       };
 
       // let s do the actual map
       const map = leaflet
         .map("map", {
-          layers: [landingsites, baseMaps.Basemap],
+          layers: [marsMontes, baseMaps.Basemap],
         })
         .setView([0, 0], 2.25);
 
@@ -275,6 +303,8 @@
         } else if (e.name === "Perseverance") {
           map.fitBounds(perseverancePaths.getBounds());
         } else if (e.name === "Curiosity") {
+          map.fitBounds(curiosityPaths.getBounds());
+        } else if (e.name === "Mars Montes") {
           map.fitBounds(curiosityPaths.getBounds());
         }
       });
