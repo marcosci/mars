@@ -305,7 +305,7 @@
         } else if (e.name === "Curiosity") {
           map.fitBounds(curiosityPaths.getBounds());
         } else if (e.name === "Mars Montes") {
-          map.fitBounds(curiosityPaths.getBounds());
+          map.fitBounds(marsMontes.getBounds());
         }
       });
     }
